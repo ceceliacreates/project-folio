@@ -4,6 +4,8 @@ Vue, Vuetify, Vue Router, Vuex, Fetch API, Express
 
 Based off the Tutorial by Jennifer Bland here: https://github.com/ratracegrad/meal-prep
 
+![project screenshot](https://raw.githubusercontent.com/ceceliacreates/project-folio/develop/screenshot.png)
+
 ## Project setup
 
 ```
