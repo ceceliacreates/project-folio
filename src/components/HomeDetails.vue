@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="blue-grey lighten-4">
+  <v-container fluid class="blue-grey lighten-4" id="home-details">
     <v-container grid-list-lg>
       <v-layout column>
         <v-flex

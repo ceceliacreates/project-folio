@@ -1,5 +1,5 @@
 {
-  "name": "meal-app",
+  "name": "project-folio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "material-design-icons-iconfont": "^5.0.1",
     "vue": "^2.6.11",

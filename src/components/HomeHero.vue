@@ -10,9 +10,11 @@
       <div class="display-1 font-weight-bold text-xs-center">
         Project ideas to make your portfolio shine.
       </div>
-      <v-btn fab class="mt-5 brown darken-4">
-        <v-icon large color="white">expand_more</v-icon>
-      </v-btn>
+      <router-link to="/#home-cta">
+        <v-btn fab class="mt-5 black">
+          <v-icon large color="white">expand_more</v-icon>
+        </v-btn>
+      </router-link>
     </v-layout>
   </v-container>
 </template>
@@ -29,5 +31,9 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100%;
+}
+
+a {
+  text-decoration: none;
 }
 </style>

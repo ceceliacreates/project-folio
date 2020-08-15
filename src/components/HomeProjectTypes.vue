@@ -1,10 +1,17 @@
 <template>
   <v-container grid-list-lg>
-    <v-row>
+    <v-row v-if="['projects'].includes($route.name)">
       <v-col
         cols="12"
-        class="text-center display-1 font-weight-black my-5 cyan--text"
-        >Choose a Project Type</v-col
+        class="text-center text-h2 font-weight-bold my-5 black--text"
+        >Browse Projects</v-col
+      >
+    </v-row>
+    <v-row v-if="['projects'].includes($route.name)">
+      <v-col
+        cols="12"
+        class="text-center text-h6 my-5 black--text text-uppercase"
+        >Choose a project type:</v-col
       >
     </v-row>
     <v-row wrap>
@@ -17,6 +24,15 @@
               <h3 class="headline mb-0">Front-End Projects</h3>
             </div>
           </v-card-title>
+          <v-card-actions v-if="['projects'].includes($route.name)">
+            <v-btn
+              outlined
+              block
+              color="cyan darken-4"
+              @click="showProjects('front-end')"
+              >SELECT</v-btn
+            >
+          </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
@@ -28,6 +44,15 @@
               <h3 class="headline mb-0">Back-End Projects</h3>
             </div>
           </v-card-title>
+          <v-card-actions v-if="['projects'].includes($route.name)">
+            <v-btn
+              outlined
+              block
+              color="cyan darken-4"
+              @click="showProjects('back-end')"
+              >SELECT</v-btn
+            >
+          </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
@@ -39,6 +64,15 @@
               <h3 class="headline mb-0">Full-Stack Projects</h3>
             </div>
           </v-card-title>
+          <v-card-actions v-if="['projects'].includes($route.name)">
+            <v-btn
+              outlined
+              block
+              color="cyan darken-4"
+              @click="showProjects('full-stack')"
+              >SELECT</v-btn
+            >
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -47,7 +81,12 @@
 
 <script>
 export default {
-  name: "HomeProjectTypes"
+  name: "HomeProjectTypes",
+  methods: {
+    showProjects(type) {
+      this.$store.dispatch("getProjects", type);
+    }
+  }
 };
 </script>
 
