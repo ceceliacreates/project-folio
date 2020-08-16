@@ -21,7 +21,7 @@ npm run serve
 ### Start API server
 
 ```
-node server.js
+npm run api
 ```
 
 ### Compiles and minifies for production
