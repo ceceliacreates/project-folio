@@ -2,7 +2,7 @@
   <v-container fill-height>
     <v-row justify="center" align-content="center">
       <v-col cols="12" md="8" lg="4" class="mx-auto text-center">
-        <h1>Login to your Folio Account</h1>
+        <h1>Sign In to your Folio Account</h1>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             prepend-icon="person"
@@ -26,7 +26,7 @@
           >
           </v-text-field>
         </v-form>
-        <v-btn color="teal" :disabled="!valid" @click="submit">Join</v-btn>
+        <v-btn color="teal" :disabled="!valid" @click="submit">Sign In</v-btn>
       </v-col>
     </v-row>
   </v-container>

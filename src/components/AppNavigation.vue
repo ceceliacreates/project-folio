@@ -46,7 +46,7 @@
           >JOIN</v-btn
         >
       </div>
-      <v-btn v-else outline color="white" @click="logout">Logout</v-btn>
+      <v-btn v-else outline @click="logout">Logout</v-btn>
     </v-toolbar>
   </span>
 </template>
