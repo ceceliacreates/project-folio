@@ -35,13 +35,18 @@
         >Projects</v-btn
       >
       <v-spacer class="hidden-sm-and-down"></v-spacer>
-      <v-btn class="hidden-sm-and-down mx-3" to="/sign-in" flat>SIGN IN</v-btn>
-      <v-btn
-        class="hidden-sm-and-down mx-3"
-        color="blue-grey lighten-3"
-        to="/join"
-        >JOIN</v-btn
-      >
+      <div v-if="!isAuthenticated" class="hidden-sm-and-down">
+        <v-btn class="hidden-sm-and-down mx-3" to="/sign-in" flat
+          >SIGN IN</v-btn
+        >
+        <v-btn
+          class="hidden-sm-and-down mx-3"
+          color="blue-grey lighten-3"
+          to="/join"
+          >JOIN</v-btn
+        >
+      </div>
+      <v-btn v-else outline color="white" @click="logout">Logout</v-btn>
     </v-toolbar>
   </span>
 </template>
@@ -59,6 +64,16 @@ export default {
         { title: "Join", path: "join" }
       ]
     };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("userSignOut");
+    }
   }
 };
 </script>

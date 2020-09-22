@@ -1,13 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
+import router from "@/router";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     projects: [],
-    apiUrl: "http://localhost:8085/api/projects"
+    apiUrl: "http://localhost:8085/api/projects",
+    user: null,
+    isAuthenticated: false
   },
   mutations: {
     setProjects(state, payload) {
@@ -21,7 +24,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getProjects({ state, commit }, type) {
+    getProjects({ state, commit }, type) {
       fetch(`${state.apiUrl}/${type}`)
         .then((response) => {
           return response.json();
@@ -38,11 +41,52 @@ export default new Vuex.Store({
         .then((user) => {
           commit("setUser", user);
           commit("setIsAuthenticated", true);
+          router.push("/folio");
         })
         .catch(() => {
           commit("setUser", null);
           commit("setIsAuthenticated", false);
+          router.push("/");
         });
+    },
+    userLogin({ commit }, { email, password }) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((user) => {
+          commit("setUser", user);
+          commit("setIsAuthenticated", true);
+          router.push("/folio");
+        })
+        .catch(() => {
+          commit("setUser", null);
+          commit("setIsAuthenticated", false);
+          router.push("/");
+        });
+    },
+    userSignOut({ commit }) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          commit("setUser", null);
+          commit("setIsAuthenticated", false);
+          router.push("/");
+        })
+        .catch(() => {
+          commit("setUser", null);
+          commit("setIsAuthenticated", false);
+          router.push("/");
+        });
+    }
+  },
+  getters: {
+    isAuthenticated(state) {
+      return (
+        state.user !== null &&
+        state.user !== undefined &&
+        state.isAuthenticated !== false
+      );
     }
   },
   modules: {}
