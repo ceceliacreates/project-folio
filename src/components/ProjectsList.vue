@@ -29,7 +29,7 @@
             <div class="text-body">{{ project.description }}</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="teal" class="mx-auto my-3" dark>Add to Folio</v-btn>
+            <v-btn color="teal" class="mx-auto my-3" @click="addProject(project) dark>Add to Folio</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -43,8 +43,20 @@ export default {
   computed: {
     projects() {
       return this.$store.state.projects;
+    },
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
     }
-  }
+  },
+  methods: {
+    addProject(project) {
+        if (this.isAuthenticated) {
+            this.$store.dispatch('addProject', project);
+        } else {
+            this.$router.push('/sign-in');
+        }
+    }
+}
 };
 </script>
 
