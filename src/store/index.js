@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
+import "firebase/firestore";
 import router from "@/router";
 
 Vue.use(Vuex);
@@ -78,6 +79,22 @@ export default new Vuex.Store({
           commit("setIsAuthenticated", false);
           router.push("/");
         });
+    },
+    addProject({ state }, payload) {
+
+      const uid = state.user.user.uid;
+      const projectId = payload.id;
+      firebase
+      .firestore()
+      .collection("users").doc(uid).update({
+        projects: firebase.firestore.FieldValue.arrayUnion(projectId)
+      })
+      .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
     }
   },
   getters: {
