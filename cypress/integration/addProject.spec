@@ -2,7 +2,7 @@
 
 describe("adds project", function () {
 
-    it.skip("logs in and adds a project", function () {
+    it("logs in and adds a project", function () {
         cy.visit("/");
         cy.contains("SIGN IN").click();
         cy.contains("Sign In to your Folio Account");

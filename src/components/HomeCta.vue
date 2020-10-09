@@ -3,7 +3,7 @@
     <v-row align="center">
       <div class="text-center mx-auto pa-16">
         <router-link to="/join">
-          <v-btn x-large color="cyan darken-4" dark>CREATE YOUR FOLIO</v-btn>
+          <v-btn x-large color="cyan lighten-1" class="white--text">CREATE YOUR FOLIO</v-btn>
         </router-link>
       </div>
     </v-row>

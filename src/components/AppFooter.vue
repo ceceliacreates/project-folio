@@ -1,7 +1,7 @@
 <template>
-  <v-footer color="cyan darken-4">
-    <v-col class="text-center white--text" cols="12">
-      {{ new Date().getFullYear() }} — <strong>ProjectFolio</strong>
+  <v-footer color="white" id="footer">
+    <v-col class="text-center cyan--text text--lighten-2" cols="12">
+     © {{ new Date().getFullYear() }} — <strong>ProjectFolio</strong>
     </v-col>
   </v-footer>
 </template>
@@ -12,4 +12,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>

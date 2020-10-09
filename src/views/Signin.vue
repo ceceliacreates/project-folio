@@ -26,7 +26,9 @@
           >
           </v-text-field>
         </v-form>
-        <v-btn color="teal" data-cy="submit" :disabled="!valid" @click="submit">Sign In</v-btn>
+        <v-btn class="white--text"
+          color="cyan"
+          raised data-cy="submit" :disabled="!valid" @click="submit">Sign In</v-btn>
       </v-col>
     </v-row>
   </v-container>

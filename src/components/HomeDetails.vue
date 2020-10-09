@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid class="blue-grey lighten-4" id="home-details">
+  <v-container fluid id="home-details">
     <v-container grid-list-lg>
       <v-layout column>
         <v-flex
-          class="display-3 font-weight-black cyan--text text--darken-3 text-sm-left my-5"
+          class="display-3 font-weight-black cyan--text text--darken-1 text-sm-left my-5"
           >How It Works</v-flex
         >
         <v-flex>
@@ -50,4 +50,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
