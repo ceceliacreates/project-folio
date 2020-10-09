@@ -84,13 +84,15 @@ export default new Vuex.Store({
 
       const uid = state.user.user.uid;
       const projectId = payload.id;
+
+      console.log( {uid, projectId})
       firebase
       .firestore()
       .collection("users").doc(uid).update({
-        projects: firebase.firestore.FieldValue.arrayUnion(projectId)
+        projects: firebase.firestore.FieldValue.arrayUnion({id: projectId})
       })
       .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ", uid);
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);

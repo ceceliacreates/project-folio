@@ -29,7 +29,7 @@
             <div class="text-body">{{ project.description }}</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="teal" class="mx-auto my-3" @click="addProject(project) dark>Add to Folio</v-btn>
+            <v-btn data-cy="addProjectButton" color="teal" class="mx-auto my-3" @click="addProject(project)" dark>Add to Folio</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

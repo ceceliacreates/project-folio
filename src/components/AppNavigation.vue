@@ -31,22 +31,22 @@
           appTitle
         }}</v-toolbar-title>
       </router-link>
-      <v-btn class="hidden-sm-and-down mx-3" to="/projects" flat
+      <v-btn data-cy="projectsPage" class="hidden-sm-and-down mx-3" to="/projects" flat
         >Projects</v-btn
       >
       <v-spacer class="hidden-sm-and-down"></v-spacer>
       <div v-if="!isAuthenticated" class="hidden-sm-and-down">
-        <v-btn class="hidden-sm-and-down mx-3" to="/sign-in" flat
+        <v-btn data-cy="signInPage" class="hidden-sm-and-down mx-3" to="/sign-in" flat
           >SIGN IN</v-btn
         >
-        <v-btn
+        <v-btn data-cy="joinPage"
           class="hidden-sm-and-down mx-3"
           color="blue-grey lighten-3"
           to="/join"
           >JOIN</v-btn
         >
       </div>
-      <v-btn v-else outlined @click="logout">Logout</v-btn>
+      <v-btn data-cy="logoutButton" v-else outlined @click="logout">Logout</v-btn>
     </v-toolbar>
   </span>
 </template>
