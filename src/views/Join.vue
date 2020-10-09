@@ -26,7 +26,9 @@
           >
           </v-text-field>
         </v-form>
-        <v-btn color="teal" :disabled="!valid" @click="submit">Join</v-btn>
+        <v-btn class="white--text"
+          color="cyan"
+          raised :disabled="!valid" @click="submit">Join</v-btn>
       </v-col>
     </v-row>
   </v-container>

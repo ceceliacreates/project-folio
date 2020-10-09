@@ -14,7 +14,7 @@
           <v-card-text>
             <div class="title">{{ project.name }}</div>
 
-            <div class="subheading text-uppercase">{{ project.type }}</div>
+            <div class="subheading text-uppercase cyan--text text--lighten-1">{{ project.type }}</div>
             <v-btn
               v-for="(tag, idx) in project.tags"
               :key="idx"
@@ -23,13 +23,12 @@
               text
               disabled
               class="mx-1"
-              id="tag-button"
               >{{ tag }}</v-btn
             >
             <div class="text-body">{{ project.description }}</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn data-cy="addProjectButton" color="teal" class="mx-auto my-3" @click="addProject(project)" dark>Add to Folio</v-btn>
+            <v-btn data-cy="addProjectButton" color="cyan lighten-1" class="mx-auto my-3" @click="addProject(project)" dark>Add to Folio</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -61,7 +60,4 @@ export default {
 </script>
 
 <style scoped>
-#tag-button {
-  color: teal !important;
-}
 </style>

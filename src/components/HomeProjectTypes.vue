@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-lg>
+  <v-container grid-list-lg id="home-project-types">
     <v-row v-if="['projects'].includes($route.name)">
       <v-col
         cols="12"
@@ -28,7 +28,7 @@
             <v-btn
               outlined
               block
-              color="cyan darken-4"
+              color="cyan lighten-1"
               @click="showProjects('front-end')"
               >SELECT</v-btn
             >
@@ -48,7 +48,7 @@
             <v-btn
               outlined
               block
-              color="cyan darken-4"
+              color="cyan lighten-1"
               @click="showProjects('back-end')"
               >SELECT</v-btn
             >
@@ -68,7 +68,7 @@
             <v-btn
               outlined
               block
-              color="cyan darken-4"
+              color="cyan lighten-1"
               @click="showProjects('full-stack')"
               >SELECT</v-btn
             >
@@ -90,4 +90,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
