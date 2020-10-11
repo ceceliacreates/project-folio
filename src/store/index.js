@@ -11,7 +11,8 @@ export default new Vuex.Store({
     projects: [],
     apiUrl: "http://localhost:8085/api/projects",
     user: null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    userProjects: []
   },
   mutations: {
     setProjects(state, payload) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
+    },
+    setUserProjects(state, payload) {
+      state.userProjects = payload;
     }
   },
   actions: {
@@ -83,20 +87,33 @@ export default new Vuex.Store({
     addProject({ state }, payload) {
 
       const uid = state.user.user.uid;
-      const projectId = payload.id;
-
-      console.log( {uid, projectId})
       firebase
       .firestore()
-      .collection("users").doc(uid).update({
-        projects: firebase.firestore.FieldValue.arrayUnion({id: projectId})
-      })
+      .collection("users").doc(uid).set({
+        projects: firebase.firestore.FieldValue.arrayUnion(payload)
+      }, {merge: true})
       .then(function(docRef) {
         console.log("Document written with ID: ", uid);
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
     });
+    },
+    getUserProjects({ state, commit }) {
+
+      return firebase
+      .firestore()
+      .collection("users").doc(state.user.user.uid).get().then(function(doc) {
+          if (doc.exists) {
+              const projects = doc.data().projects;
+              commit("setUserProjects", projects)
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
     }
   },
   getters: {

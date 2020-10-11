@@ -6,8 +6,17 @@
       disable-resize-watcher
     >
       <v-list>
+        <v-list-item-group>
+          <v-list-item key="browse">
+            <v-list-item-content>
+              <router-link class="menu-link cyan--text text--darken-2 font-weight-bold" to="/projects">
+                Browse Projects
+              </router-link>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
         <v-list-item-group v-if="!isAuthenticated">
-  <template v-for="(item, index) in items">
+  <template v-for="(item, index) in unAuthenticatedItems">
           <v-list-item :key="index">
             <v-list-item-content>
               <router-link class="menu-link cyan--text text--darken-2" :to="`/${item.path}`">
@@ -15,15 +24,23 @@
               </router-link>
             </v-list-item-content>
           </v-list-item>
-          <v-divider :key="`divider-${index}`"></v-divider>
         </template>
         </v-list-item-group>
         <v-list-item-group v-else>
-<v-list-item>
-  <v-list-item-content>
-    <v-lis-item-title @click="logout">Logout</v-lis-item-title>
-  </v-list-item-content>
-</v-list-item>
+<template v-for="(item, index) in authenticatedItems">
+          <v-list-item :key="index">
+            <v-list-item-content>
+              <router-link class="menu-link cyan--text text--darken-2" :to="`/${item.path}`">
+                {{ item.title }}
+              </router-link>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <v-list-item key="logout">
+          <v-list-item-content>
+             <v-btn data-cy="logoutButton" outlined color="black" @click="logout">Logout</v-btn>
+          </v-list-item-content>
+        </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -41,7 +58,7 @@
         }}</v-toolbar-title>
       </router-link>
       <v-btn data-cy="projectsPage" class="hidden-sm-and-down mx-3" text to="/projects"
-        >Projects</v-btn
+        >Browse Projects</v-btn
       >
       <v-spacer class="hidden-sm-and-down"></v-spacer>
       <div v-if="!isAuthenticated" class="hidden-sm-and-down">
@@ -56,7 +73,10 @@
           >JOIN</v-btn
         >
       </div>
-      <v-btn data-cy="logoutButton" v-else outlined class="hidden-sm-and-down" color="grey lighten-1" @click="logout">Logout</v-btn>
+      <div v-else>
+      <v-btn class="hidden-sm-and-down mx-3" text to="/folio">My Folio </v-btn>
+      <v-btn data-cy="logoutButton" outlined class="hidden-sm-and-down" color="black" @click="logout">Logout</v-btn>
+      </div>
     </v-app-bar>
   </span>
 </template>
@@ -68,9 +88,12 @@ export default {
     return {
       appTitle: "Folio",
       drawer: false,
-      items: [
+      unAuthenticatedItems: [
         { title: "Sign in", path: "sign-in" },
         { title: "Join", path: "join" }
+      ],
+      authenticatedItems: [
+        { title: "My Folio", path: "folio"},
       ]
     };
   },
