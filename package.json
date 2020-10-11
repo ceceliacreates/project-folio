@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "api": "node server.js"
+    "api": "node server.js",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
