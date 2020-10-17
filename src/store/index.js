@@ -84,7 +84,7 @@ export default new Vuex.Store({
           router.push("/");
         });
     },
-    addProject({ state }, payload) {
+    addUserProject({ state }, payload) {
 
       const uid = state.user.user.uid;
       firebase
@@ -94,6 +94,7 @@ export default new Vuex.Store({
       }, {merge: true})
       .then(function(docRef) {
         console.log("Document written with ID: ", uid);
+        alert("Project added");
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -101,9 +102,11 @@ export default new Vuex.Store({
     },
     getUserProjects({ state, commit }) {
 
+      const uid = state.user.user.uid;
+
       return firebase
       .firestore()
-      .collection("users").doc(state.user.user.uid).get().then(function(doc) {
+      .collection("users").doc(uid).get().then(function(doc) {
           if (doc.exists) {
               const projects = doc.data().projects;
               commit("setUserProjects", projects)
@@ -114,6 +117,24 @@ export default new Vuex.Store({
       }).catch(function(error) {
           console.log("Error getting document:", error);
       });
+    },
+    deleteUserProject({ state, dispatch }, payload) {
+
+      const uid = state.user.user.uid;
+
+      firebase
+      .firestore()
+      .collection("users").doc(uid).set({
+        projects: firebase.firestore.FieldValue.arrayRemove(payload)
+      }, {merge: true})
+      .then(function(docRef) {
+        console.log("Document written with ID: ", uid);
+        dispatch('getUserProjects')
+        
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
     }
   },
   getters: {
