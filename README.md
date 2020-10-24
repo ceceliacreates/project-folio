@@ -1,6 +1,8 @@
 # project-folio
 
-Vue, Vuetify, Vue Router, Vuex, Fetch API, Express
+Vue, Vuetify, Vue Router, Vuex, Google Firebase (Authentication and Firestore)
+
+In the process of moving away from the placeholder Express API to Firestore.
 
 Based off the Tutorial by Jennifer Bland here: https://github.com/ratracegrad/meal-prep
 
@@ -18,24 +20,8 @@ npm install
 npm run serve
 ```
 
-### Start API server
+### Start API server (needed to populate placeholder projects)
 
 ```
 npm run api
 ```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
