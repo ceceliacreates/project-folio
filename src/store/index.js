@@ -85,56 +85,79 @@ export default new Vuex.Store({
         });
     },
     addUserProject({ state }, payload) {
-
       const uid = state.user.user.uid;
       firebase
-      .firestore()
-      .collection("users").doc(uid).set({
-        projects: firebase.firestore.FieldValue.arrayUnion(payload)
-      }, {merge: true})
-      .then(function(docRef) {
-        console.log("Document written with ID: ", uid);
-        alert("Project added");
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+        .firestore()
+        .collection("users")
+        .doc(uid)
+        .set(
+          {
+            projects: firebase.firestore.FieldValue.arrayUnion(payload)
+          },
+          { merge: true }
+        )
+        .then(function(docRef) {
+          console.log("Document written with ID: ", uid);
+          alert("Project added");
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
     },
     getUserProjects({ state, commit }) {
-
       const uid = state.user.user.uid;
 
       return firebase
-      .firestore()
-      .collection("users").doc(uid).get().then(function(doc) {
+        .firestore()
+        .collection("users")
+        .doc(uid)
+        .get()
+        .then(function(doc) {
           if (doc.exists) {
-              const projects = doc.data().projects;
-              commit("setUserProjects", projects)
+            const projects = doc.data().projects;
+            commit("setUserProjects", projects);
           } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
           }
-      }).catch(function(error) {
+        })
+        .catch(function(error) {
           console.log("Error getting document:", error);
-      });
+        });
     },
     deleteUserProject({ state, dispatch }, payload) {
-
       const uid = state.user.user.uid;
 
       firebase
-      .firestore()
-      .collection("users").doc(uid).set({
-        projects: firebase.firestore.FieldValue.arrayRemove(payload)
-      }, {merge: true})
-      .then(function(docRef) {
-        console.log("Document written with ID: ", uid);
-        dispatch('getUserProjects')
-        
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+        .firestore()
+        .collection("users")
+        .doc(uid)
+        .set(
+          {
+            projects: firebase.firestore.FieldValue.arrayRemove(payload)
+          },
+          { merge: true }
+        )
+        .then(function(docRef) {
+          console.log("Document written with ID: ", uid);
+          dispatch("getUserProjects");
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    },
+    addProject({}, payload) {
+      firebase
+        .firestore()
+        .collection("projects")
+        .add(payload)
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef);
+          alert("Project submitted for review, thank you!");
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
     }
   },
   getters: {
